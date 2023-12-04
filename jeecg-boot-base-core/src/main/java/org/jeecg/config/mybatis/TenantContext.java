@@ -4,7 +4,7 @@
 //
 ///**
 // * 多租户 tenant_id存储器
-// * @author: jeecg-boot
+// * @Author: wangpengkai
 // */
 //@Slf4j
 //public class TenantContext {

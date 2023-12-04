@@ -56,7 +56,7 @@ import java.util.stream.Collectors;
 
 /**
  * 第三方App对接：钉钉实现类
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Slf4j
 @Service

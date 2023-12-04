@@ -4,7 +4,7 @@
 //
 ///**
 // * @Description: QueryRuleVo
-// * @author: jeecg-boot
+// * @Author: wangpengkai
 // */
 //@Data
 //public class QueryRuleVo {

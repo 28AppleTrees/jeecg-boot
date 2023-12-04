@@ -15,7 +15,7 @@ import java.io.IOException;
 
 /**
  * @Description: OSS云存储实现类
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Service("ossFileService")
 public class OssFileServiceImpl extends ServiceImpl<OssFileMapper, OssFile> implements IOssFileService {

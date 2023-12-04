@@ -5,7 +5,7 @@ import org.jeecg.modules.oss.entity.OssFile;
 
 /**
  * @Description: oss云存储Mapper
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 public interface OssFileMapper extends BaseMapper<OssFile> {
 

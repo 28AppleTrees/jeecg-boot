@@ -39,7 +39,7 @@ import java.util.List;
 
 /**
  * @Description: 单表示例
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date:2018-12-29
  * @Version:V2.0
  */

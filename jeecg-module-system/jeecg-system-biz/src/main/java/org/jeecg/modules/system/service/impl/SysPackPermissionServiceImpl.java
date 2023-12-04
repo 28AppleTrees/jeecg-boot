@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 /**
  * @Description: 产品包菜单关系表
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date:   2022-12-31
  * @Version: V1.0
  */

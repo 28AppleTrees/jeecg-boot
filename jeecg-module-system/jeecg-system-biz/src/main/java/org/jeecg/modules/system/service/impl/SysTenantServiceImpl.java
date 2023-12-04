@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 
 /**
  * @Description: 租户实现类
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Service("sysTenantServiceImpl")
 @Slf4j

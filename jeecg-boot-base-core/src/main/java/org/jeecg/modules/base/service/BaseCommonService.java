@@ -5,7 +5,7 @@ import org.jeecg.common.system.vo.LoginUser;
 
 /**
  * common接口
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 public interface BaseCommonService {
 

@@ -1,7 +1,7 @@
 package org.jeecg.common.constant;
 /**
  * 数据库上下文常量
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 public interface DataBaseConstant {
 	//*********数据库类型****************************************

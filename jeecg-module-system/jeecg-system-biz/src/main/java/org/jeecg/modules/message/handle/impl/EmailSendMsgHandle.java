@@ -27,7 +27,7 @@ import java.util.Set;
 
 /**
  * @Description: 邮箱发送信息
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Slf4j
 @Component("emailSendMsgHandle")

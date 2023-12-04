@@ -19,7 +19,7 @@
 //
 ///**
 // * @Description: NgAlainServiceImpl 实现类
-// * @author: jeecg-boot
+// * @Author: wangpengkai
 // */
 //@Service("ngAlainService")
 //public class NgAlainServiceImpl implements NgAlainService {

@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * 普通消息
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 public class MessageDTO implements Serializable {

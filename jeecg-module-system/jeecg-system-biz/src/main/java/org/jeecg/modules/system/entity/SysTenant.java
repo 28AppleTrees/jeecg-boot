@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * 租户信息
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 @TableName("sys_tenant")

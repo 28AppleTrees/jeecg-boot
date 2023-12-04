@@ -17,7 +17,7 @@ import com.alibaba.druid.util.Utils;
 
 /**
  * @Description: DruidConfig配置类
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Configuration
 @AutoConfigureAfter(DruidDataSourceAutoConfigure.class)

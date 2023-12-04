@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * @Description: MockController
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @RestController
 @RequestMapping("/mock/api")

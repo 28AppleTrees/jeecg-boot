@@ -7,7 +7,7 @@
 //
 ///**
 // * @Description: NgAlainService接口
-// * @author: jeecg-boot
+// * @Author: wangpengkai
 // */
 //public interface NgAlainService {
 //    /**

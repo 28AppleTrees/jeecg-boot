@@ -13,7 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * @Description: TestSocketController
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @RestController
 @RequestMapping("/sys/socketTest")

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Minio文件上传配置文件
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Slf4j
 @Configuration
