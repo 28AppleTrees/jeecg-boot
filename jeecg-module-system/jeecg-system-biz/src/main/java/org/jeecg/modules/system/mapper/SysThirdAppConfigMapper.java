@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @Description: 第三方配置表
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date:   2023-02-03
  * @Version: V1.0
  */

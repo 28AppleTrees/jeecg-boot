@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 第三方登录 信息存储
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 public class ThirdLoginModel implements Serializable {

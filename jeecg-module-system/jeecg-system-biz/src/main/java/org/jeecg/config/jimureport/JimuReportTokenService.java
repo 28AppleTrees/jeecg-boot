@@ -21,7 +21,7 @@ import java.util.Set;
  * 自定义积木报表鉴权(如果不进行自定义，则所有请求不做权限控制)
  *  * 1.自定义获取登录token
  *  * 2.自定义获取登录用户
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 
 

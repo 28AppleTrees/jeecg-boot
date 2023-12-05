@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @Description: 字典类
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

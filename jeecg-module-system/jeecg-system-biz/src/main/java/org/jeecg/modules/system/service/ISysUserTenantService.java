@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * @Description: sys_user_tenant_relation
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date:   2022-12-23
  * @Version: V1.0
  */

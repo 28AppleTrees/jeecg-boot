@@ -7,7 +7,7 @@ import org.jeecg.modules.system.entity.SysUserPosition;
 import com.baomidou.mybatisplus.extension.service.IService;
 /**
  * @Description: 用户职位关系表
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date:   2023-02-14
  * @Version: V1.0
  */

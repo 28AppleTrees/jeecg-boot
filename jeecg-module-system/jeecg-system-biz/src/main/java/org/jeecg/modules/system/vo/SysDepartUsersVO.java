@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * @Description: 系统部门VO
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 public class SysDepartUsersVO implements Serializable{

@@ -40,7 +40,7 @@ import java.util.*;
 
 /**
  * 租户配置信息
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Slf4j
 @RestController

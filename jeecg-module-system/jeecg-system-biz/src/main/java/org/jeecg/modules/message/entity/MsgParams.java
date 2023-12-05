@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * 发送消息实体
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 public class MsgParams implements Serializable  {

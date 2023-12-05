@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @Description: 发企业微信消息模板
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Slf4j
 @Component("qywxSendMsgHandle")

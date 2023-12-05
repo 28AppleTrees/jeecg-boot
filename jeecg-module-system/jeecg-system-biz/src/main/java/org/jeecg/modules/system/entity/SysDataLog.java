@@ -16,7 +16,7 @@ import java.util.Date;
 
 /**
  * @Description: 系统数据日志
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -9,7 +9,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
  * @Description: oss云存储实体类
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Data
 @TableName("oss_file")

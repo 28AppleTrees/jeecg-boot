@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @Description: SysBaseAPIFallbackFactory
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Component
 public class SysBaseAPIFallbackFactory implements FallbackFactory<ISysBaseAPI> {

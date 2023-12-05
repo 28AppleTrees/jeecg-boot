@@ -27,7 +27,7 @@ import java.util.UUID;
 /**
  * @Description: 阿里云 oss 上传工具类(高依赖版)
  * @Date: 2019/5/10
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Slf4j
 public class OssBootUtil {

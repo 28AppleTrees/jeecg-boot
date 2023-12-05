@@ -4,7 +4,7 @@ import org.jeecg.common.util.oConvertUtils;
 
 /**
  * 系统公告自定义跳转方式
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 public enum SysAnnmentTypeEnum {
     /**

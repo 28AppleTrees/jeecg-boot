@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Description: 系统表白名单
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date: 2023-09-12
  * @Version: V1.0
  */

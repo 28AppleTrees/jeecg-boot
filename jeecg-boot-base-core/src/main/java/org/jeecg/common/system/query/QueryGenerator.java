@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Description: 查询生成器
- * @author: jeecg-boot
+ * @Author: wangpengkai
  */
 @Slf4j
 public class QueryGenerator {

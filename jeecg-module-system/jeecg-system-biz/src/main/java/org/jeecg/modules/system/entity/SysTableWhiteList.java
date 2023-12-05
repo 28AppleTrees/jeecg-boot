@@ -14,7 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * @Description: 系统表白名单
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date: 2023-09-12
  * @Version: V1.0
  */

@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @Description: 租户产品包
- * @Author: jeecg-boot
+ * @Author: wangpengkai
  * @Date:   2022-12-31
  * @Version: V1.0
  */
