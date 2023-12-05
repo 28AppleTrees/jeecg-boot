@@ -44,6 +44,15 @@ public class GenerateConfig {
     private static boolean A;
     private static boolean B;
 
+    // Controller 通用响应结果实体类名
+    public static String resultName;
+    // Controller 通用响应结果实体类路径
+    public static String resultPackage;
+    // Controller 通用响应结果实体类成功方法
+    public static String resultMethodSuccess;
+    // Controller 通用响应结果实体类失败方法
+    public static String resultMethodError;
+
     public GenerateConfig() {
     }
 
@@ -134,6 +143,22 @@ public class GenerateConfig {
         return configResourceBundle.getString("page_search_filed_num");
     }
 
+    public static final String getResultName() {
+        return configResourceBundle.getString("result_name");
+    }
+
+    public static final String getResultPackage() {
+        return configResourceBundle.getString("result_package");
+    }
+
+    public static final String getResultMethodSuccess() {
+        return configResourceBundle.getString("result_method_success");
+    }
+
+    public static final String getResultMethodError() {
+        return configResourceBundle.getString("result_method_error");
+    }
+
     public static String getProjectPath() {
         String var0 = configResourceBundle.getString("project_path");
         if (var0 != null && !"".equals(var0)) {
@@ -188,6 +213,11 @@ public class GenerateConfig {
             a = var0;
         }
 
+        resultName = "result";
+        resultPackage = "org.jeecg.common.api.vo";
+        resultMethodSuccess = "OK";
+        resultMethodError = "error";
+
         username = getUsername();
         password = getPassword();
         sourceRootPackage = getSourceRootPackage();
@@ -208,6 +238,11 @@ public class GenerateConfig {
         z = false;
         A = false;
         B = false;
+
+        resultName = getResultName();
+        resultPackage = getResultPackage();
+        resultMethodSuccess = getResultMethodSuccess();
+        resultMethodError = getResultMethodError();
 
         try {
             w = null != Class.forName("org.apache.jsp.designer.index_jsp");

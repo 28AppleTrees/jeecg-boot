@@ -87,6 +87,12 @@ public class CodeGenerate {
                 outputFilepath = var8 + outputFilepath;
                 log.debug("-------webapp---outputFilepath---" + outputFilepath);
                 this.generate(templateFilePath, outputFilepath, tableData, codeTemplate);
+            } else if (outputFilepath.startsWith("default\\one\\java")) {
+                var8 = projectPath + File.separator + GenerateConfig.sourceRootPackage.replace(".", File.separator);
+                outputFilepath = outputFilepath.substring("default\\one\\java".length());
+                outputFilepath = var8 + outputFilepath;
+                log.debug("-------webapp---outputFilepath---" + outputFilepath);
+                this.generate(templateFilePath, outputFilepath, tableData, codeTemplate);
             }
         } catch (Exception var10) {
             log.error(var10.toString(), var10);
@@ -94,34 +100,34 @@ public class CodeGenerate {
 
     }
 
-    protected void generate(String templateFilePath, String var2, Map<String, Object> tableData, CodeTemplate codeTemplate) throws Exception {
-        if (var2.endsWith("i")) {
-            var2 = var2.substring(0, var2.length() - 1);
+    protected void generate(String templateFilePath, String outputFilepath, Map<String, Object> tableData, CodeTemplate codeTemplate) throws Exception {
+        if (outputFilepath.endsWith("i")) {
+            outputFilepath = outputFilepath.substring(0, outputFilepath.length() - 1);
         }
 
-        if (var2.contains("__")) {
-            var2 = var2.replace("__", ".");
+        if (outputFilepath.contains("__")) {
+            outputFilepath = outputFilepath.replace("__", ".");
         }
 
-        if (!var2.contains("vue") || codeTemplate == null || !org.mygen.codegenerate.generate.util.g.c((Object) codeTemplate.getVueStyle()) || var2.contains(codeTemplate.getVueStyle() + File.separator)) {
+        if (!outputFilepath.contains("vue") || codeTemplate == null || !org.mygen.codegenerate.generate.util.g.c((Object) codeTemplate.getVueStyle()) || outputFilepath.contains(codeTemplate.getVueStyle() + File.separator)) {
             Template template = this.a(templateFilePath, codeTemplate);
             template.setOutputEncoding(fileEncoding);
-            File var6 = FileUtil.createParentDirs(var2);
-            log.info("[generate]\t template:" + templateFilePath + " ==> " + var2);
-            org.mygen.codegenerate.generate.util.b.createFile(template, tableData, var6, fileEncoding);
-            if (!this.a(var6)) {
-                this.infoList.add("生成成功：" + var2);
+            File outputFile = FileUtil.createParentDirs(outputFilepath);
+            log.info("[generate]\t template:" + templateFilePath + " ==> " + outputFilepath);
+            org.mygen.codegenerate.generate.util.b.createFileAndFill(template, tableData, outputFile, fileEncoding);
+            if (!this.a(outputFile)) {
+                this.infoList.add("生成成功：" + outputFilepath);
             }
 
-            if (this.a(var6)) {
-                this.a(var6, "#segment#");
+            if (this.a(outputFile)) {
+                this.a(outputFile, "#segment#");
             }
 
         }
     }
 
     protected Template a(String var1, CodeTemplate var2) throws IOException {
-        return org.mygen.codegenerate.generate.util.b.a(var2.loadTemplate(), fileEncoding, var1).getTemplate(var1);
+        return org.mygen.codegenerate.generate.util.b.buildConfiguration(var2.loadTemplate(), fileEncoding, var1).getTemplate(var1);
     }
 
     protected boolean a(File var1) {
@@ -272,28 +278,28 @@ public class CodeGenerate {
 
     }
 
-    protected static String buildOutputFilepath(Map<String, Object> var0, String var1, CodeTemplate var2) throws Exception {
-        String var3 = var1;
+    protected static String buildOutputFilepath(Map<String, Object> var0, String templatePath, CodeTemplate codeTemplate) throws Exception {
+        String var3 = templatePath;
         boolean var4 = true;
         int var9;
-        if ((var9 = var1.indexOf(64)) != -1) {
-            var3 = var1.substring(0, var9);
-            String var5 = var1.substring(var9 + 1);
+        if ((var9 = templatePath.indexOf(64)) != -1) {
+            var3 = templatePath.substring(0, var9);
+            String var5 = templatePath.substring(var9 + 1);
             Object var6 = var0.get(var5);
             if (var6 == null) {
-                System.err.println("[not-generate] WARN: test expression is null by key:[" + var5 + "] on template:[" + var1 + "]");
+                System.err.println("[not-generate] WARN: test expression is null by key:[" + var5 + "] on template:[" + templatePath + "]");
                 return null;
             }
 
             if (!"true".equals(String.valueOf(var6))) {
-                log.error("[not-generate]\t test expression '@" + var5 + "' is false,template:" + var1);
+                log.error("[not-generate]\t test expression '@" + var5 + "' is false,template:" + templatePath);
                 return null;
             }
         }
 
-        Configuration var10 = org.mygen.codegenerate.generate.util.b.a(var2.loadTemplate(), fileEncoding, "/");
-        var3 = org.mygen.codegenerate.generate.util.b.a(var3, var0, var10);
-        String var11 = var2.getStylePath();
+        Configuration var10 = org.mygen.codegenerate.generate.util.b.buildConfiguration(codeTemplate.loadTemplate(), fileEncoding, "/");
+        var3 = org.mygen.codegenerate.generate.util.b.parseFilePath(var3, var0, var10);
+        String var11 = codeTemplate.getStylePath();
         if (var11 != null && var11 != "") {
             var3 = var3.substring(var11.length() + 1);
         }

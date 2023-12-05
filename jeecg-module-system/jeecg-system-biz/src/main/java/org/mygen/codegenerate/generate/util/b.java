@@ -32,7 +32,7 @@ public class b {
     public b() {
     }
 
-    public static Configuration a(List<File> var0, String var1, String var2) throws IOException {
+    public static Configuration buildConfiguration(List<File> var0, String var1, String var2) throws IOException {
         Configuration configuration = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
         log.debug(" FileTemplateLoader[] size " + var0.size());
         log.debug(" templateRootDirs templateName " + var2);
@@ -84,22 +84,39 @@ public class b {
         }
     }
 
-    public static String a(String var0, Map<String, Object> var1, Configuration var2) {
+    /**
+     * 解析模板路径并填充
+     * @param sourceTemplatePath
+     * @param var1
+     * @param var2
+     * @return
+     */
+    public static String parseFilePath(String sourceTemplatePath, Map<String, Object> var1, Configuration var2) {
         StringWriter var3 = new StringWriter();
 
         try {
-            Template var4 = new Template("templateString...", new StringReader(var0), var2);
+            Template var4 = new Template("templateString...", new StringReader(sourceTemplatePath), var2);
             var4.process(var1, var3);
             return var3.toString();
         } catch (Exception var5) {
-            throw new IllegalStateException("cannot process templateString:" + var0 + " cause:" + var5, var5);
+            throw new IllegalStateException("cannot process templateString:" + sourceTemplatePath + " cause:" + var5, var5);
         }
     }
 
-    public static void createFile(Template template, Map<String, Object> tableData, File var2, String fileEncoding) throws IOException, TemplateException {
-        BufferedWriter var4 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(var2), fileEncoding));
+    /**
+     * 创建模板文件并填充模板内容
+     * @param template
+     * @param tableData
+     * @param outputFile
+     * @param fileEncoding
+     * @throws IOException
+     * @throws TemplateException
+     */
+    public static void createFileAndFill(Template template, Map<String, Object> tableData, File outputFile, String fileEncoding) throws IOException, TemplateException {
+        // new FileOutputStream() 会自动创建不存在的文件, writer进行模板内容续写
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), fileEncoding));
         tableData.put("Format", new SimpleFormat());
-        template.process(tableData, var4);
-        var4.close();
+        template.process(tableData, writer);
+        writer.close();
     }
 }

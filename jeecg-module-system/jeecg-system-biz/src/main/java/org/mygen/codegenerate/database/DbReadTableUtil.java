@@ -14,10 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import org.apache.commons.lang.StringUtils;
 import org.mygen.codegenerate.config.GenerateConfig;
 import org.mygen.codegenerate.generate.pojo.ColumnVo;
@@ -41,6 +39,87 @@ public class DbReadTableUtil {
 
     public static List<String> a() throws SQLException {
         return readAllTableNames();
+    }
+
+    public static Map<String, String> readTableDetail(String tableName) throws Exception {
+        String sql = null;
+
+        Map<String, String> result = new HashMap<>();
+
+        try {
+            Class.forName(GenerateConfig.diverName);
+            connection = DriverManager.getConnection(GenerateConfig.url, GenerateConfig.username, GenerateConfig.password);
+            statement = connection.createStatement(1005, 1007);
+            String catalog = connection.getCatalog();
+            log.info(" connect databaseName : " + catalog);
+            if (DatabaseUtil.a(GenerateConfig.url)) {
+                sql = MessageFormat.format("SELECT TABLE_SCHEMA `database`, TABLE_NAME tableName, TABLE_COMMENT 'comment' FROM information_schema.`TABLES` WHERE TABLE_SCHEMA = {0} AND TABLE_NAME = {1}", org.mygen.codegenerate.generate.util.f.c(catalog), org.mygen.codegenerate.generate.util.f.c(tableName));
+            } else {
+                throw new Exception("表详情查询仅支持mysql");
+            }
+            // todo 其他类型数据库查表详情sql
+            /*if (DatabaseUtil.b(GenerateConfig.url)) {
+                sql = " select distinct colstable.table_name as  table_name from user_tab_cols colstable order by colstable.table_name";
+            }
+
+            if (DatabaseUtil.d(GenerateConfig.url)) {
+                if (GenerateConfig.a.indexOf(",") == -1) {
+                    sql = MessageFormat.format("select tablename from pg_tables where schemaname in( {0} )", org.mygen.codegenerate.generate.util.f.c(GenerateConfig.a));
+                } else {
+                    StringBuffer var4 = new StringBuffer();
+                    String[] var5 = GenerateConfig.a.split(",");
+                    String[] var6 = var5;
+                    int var7 = var5.length;
+
+                    for(int var8 = 0; var8 < var7; ++var8) {
+                        String var9 = var6[var8];
+                        var4.append(org.mygen.codegenerate.generate.util.f.c(var9) + ",");
+                    }
+
+                    sql = MessageFormat.format("select tablename from pg_tables where schemaname in( {0} )", var4.toString().substring(0, var4.toString().length() - 1));
+                }
+            }
+
+            if (DatabaseUtil.c(GenerateConfig.url)) {
+                sql = "select distinct c.name as  table_name from sys.objects c where c.type = 'U' ";
+            }*/
+
+            log.debug("--------------sql-------------" + sql);
+            ResultSet resultSet = statement.executeQuery(sql);
+            if (!resultSet.isBeforeFirst() && resultSet.getRow() <= 0) {
+                log.error("数据库未查询到表:" + tableName);
+                return null;
+            }
+            while(resultSet.next()) {
+                String database = resultSet.getString(1);
+                String tName = resultSet.getString(2);
+                String comment = resultSet.getString(3);
+                result.put("database", database);
+                result.put("tableName", tName);
+                result.put("comment", comment == null || comment.length() == 0 ? tName : comment);
+            }
+        } catch (SQLException var18) {
+            var18.printStackTrace();
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                    statement = null;
+                    System.gc();
+                }
+
+                if (connection != null) {
+                    connection.close();
+                    connection = null;
+                    System.gc();
+                }
+            } catch (SQLException var17) {
+                throw var17;
+            }
+
+        }
+
+        return result;
     }
 
     public static List<String> readAllTableNames() throws SQLException {

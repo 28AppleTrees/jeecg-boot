@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface IGenerate {
-    Map<String, Object> loadTableData() throws Exception;
+    Map<String, Object> loadConfigAndReadTable() throws Exception;
 
     List<String> generateCodeFile(String var1) throws Exception;
 

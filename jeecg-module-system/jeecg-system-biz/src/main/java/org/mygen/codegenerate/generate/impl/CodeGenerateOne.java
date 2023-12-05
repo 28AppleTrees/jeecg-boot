@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.HashSet;
 import org.apache.commons.lang.StringUtils;
 import org.mygen.codegenerate.config.GenerateConfig;
 import org.mygen.codegenerate.database.DbReadTableUtil;
@@ -38,8 +39,14 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
         this.originalTableColumnList = originalColumns;
     }
 
-    public Map<String, Object> loadTableData() throws Exception {
+    public Map<String, Object> loadConfigAndReadTable() throws Exception {
         HashMap<String, Object> resultMap = new HashMap<>();
+
+        resultMap.put("resultPackage", GenerateConfig.resultPackage);
+        resultMap.put("resultName", GenerateConfig.resultName);
+        resultMap.put("resultMethodSuccess", GenerateConfig.resultMethodSuccess);
+        resultMap.put("resultMethodError", GenerateConfig.resultMethodError);
+
         resultMap.put("bussiPackage", GenerateConfig.bussiPackage);
         resultMap.put("entityPackage", this.tableVo.getEntityPackage());
         resultMap.put("entityName", this.tableVo.getEntityName());
@@ -91,7 +98,7 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
     public List<String> generateCodeFile(String stylePath) throws Exception {
         log.debug("----jeecg---Code----Generation----[单表模型:" + this.tableVo.getTableName() + "]------- 生成中。。。");
         String projectPath = GenerateConfig.projectPath;
-        Map tableData = this.loadTableData();
+        Map<String, Object> tableData = this.loadConfigAndReadTable();
         String templatePath = GenerateConfig.templatePath;
         // 模板路径默认为`jeecg/code-template`时, 追加`/one`
         if (trimChar(templatePath, "/").equals("jeecg/code-template")) {
@@ -129,22 +136,51 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
     }
 
     public static void main(String[] args) {
-        TableVo var1 = new TableVo();
-        var1.setTableName("demo");
-        var1.setPrimaryKeyPolicy("uuid");
-        var1.setEntityPackage("test");
-        var1.setEntityName("JeecgDemo");
-        var1.setFtlDescription("jeecg 测试demo");
+        HashSet<String> tableNames = new HashSet<>();
+        tableNames.add("expos_social_project_detail");
+        tableNames.add("expos_social_project_detail_copy1");
+        tableNames.add("abc");
+        tableNames.add("abds");
+        String entityPackage = "aaaa";
+
+        // Map<表名, 注释>, 自定义注释Map
+        Map<String, String> commentMap = new HashMap<>();
+        commentMap.put("demo", "demo注释修改");
 
         try {
-            CodeGenerateOne codeGenerateOne = new CodeGenerateOne(var1);
-            codeGenerateOne.generateCodeFile((String)null);
+            for (String tableName : tableNames) {
+                Map<String, String> map = DbReadTableUtil.readTableDetail(tableName);
+                if (map != null) {
+                    TableVo tempTable = new TableVo();
+                    tempTable.setTableName(tableName);
+//                    tempTable.setPrimaryKeyPolicy("uuid");
+                    tempTable.setEntityPackage(entityPackage);
+                    tempTable.setEntityName(convertHump(tableName));
+                    tempTable.setFtlDescription(map.get("comment"));
+
+                    String comment = commentMap.get(tableName);
+                    if (comment != null) {
+                        tempTable.setFtlDescription(comment);
+                    }
+
+                    new CodeGenerateOne(tempTable).generateCodeFile(null);
+                }
+            }
         } catch (Exception var3) {
             var3.printStackTrace();
         }
 
+        System.exit(0);
+    }
 
-
-
+    private static String convertHump(String sourceString) {
+        String[] split = sourceString.split("_");
+        sourceString = "";
+        for (int i = 0; i < split.length; i++) {
+            String var4 = split[i].toLowerCase();
+            var4 = var4.substring(0, 1).toUpperCase() + var4.substring(1, var4.length());
+            sourceString = sourceString + var4;
+        }
+        return sourceString;
     }
 }

@@ -80,19 +80,19 @@ public class FileUtil {
         }
     }
 
-    public static File createParentDirs(String var0) {
-        if (var0 == null) {
+    public static File createParentDirs(String filePath) {
+        if (filePath == null) {
             throw new IllegalArgumentException("file must be not null");
         } else {
-            File var1 = new File(var0);
-            mkParentDirs(var1);
-            return var1;
+            File file = new File(filePath);
+            mkParentDirs(file);
+            return file;
         }
     }
 
-    public static void mkParentDirs(File var0) {
-        if (var0.getParentFile() != null) {
-            var0.getParentFile().mkdirs();
+    public static void mkParentDirs(File file) {
+        if (file.getParentFile() != null) {
+            file.getParentFile().mkdirs();
         }
 
     }
