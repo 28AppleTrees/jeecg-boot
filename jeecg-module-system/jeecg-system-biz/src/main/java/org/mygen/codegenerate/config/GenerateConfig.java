@@ -18,7 +18,7 @@ public class GenerateConfig {
     private static final Logger log = LoggerFactory.getLogger(GenerateConfig.class);
     private static final String DEFAULT_DATABASE_FILE_PATH = "jeecg/jeecg_database";
     private static final String DEFAULT_CONFIG_FILE_PATH = "jeecg/jeecg_config";
-    private static ResourceBundle databaseResourceBundle = readProperties("jeecg/jeecg_database");
+    private static ResourceBundle databaseResourceBundle;
     private static ResourceBundle configResourceBundle;
     public static String a;
     public static String diverName;
@@ -110,7 +110,7 @@ public class GenerateConfig {
         return databaseResourceBundle.getString("database_name");
     }
 
-    public static final boolean isDbFiledConvert() {
+    public static final boolean getDbFiledConvert() {
         String config = configResourceBundle.getString("db_filed_convert");
         return !config.toString().equals("false");
     }
@@ -181,6 +181,8 @@ public class GenerateConfig {
     }
 
     static {
+        // todo mygen readProperties()路径错误, 无法读取配置文件
+        databaseResourceBundle = readProperties("jeecg/jeecg_database");
         if (databaseResourceBundle == null) {
             log.debug("通过class目录加载配置文件 jeecg/jeecg_database");
             databaseResourceBundle = ResourceBundle.getBundle("jeecg/jeecg_database");
@@ -226,7 +228,7 @@ public class GenerateConfig {
         templatePath = getTemplatePath();
         projectPath = getProjectPath();
         primaryKeyField = getDbTableId();
-        dbFiledConvertFlag = isDbFiledConvert();
+        dbFiledConvertFlag = getDbFiledConvert();
         pageFilterFields = getPageFilterFields();
         pageSearchFiledNum = getPageSearchFiledNum();
         sourceRootPackage = sourceRootPackage.replace(".", "/");

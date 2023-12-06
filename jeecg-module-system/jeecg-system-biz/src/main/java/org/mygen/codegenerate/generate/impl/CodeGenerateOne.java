@@ -105,12 +105,6 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
             templatePath = "/" + trimChar(templatePath, "/") + "/one";
             GenerateConfig.setTemplatePath(templatePath);
         }
-        // todo 使用online模板, 报错
-        if (trimChar(templatePath, "/").equals("jeecg/code-template-online/default")) {
-            templatePath = "/" + trimChar(templatePath, "/") + "/one";
-            GenerateConfig.setTemplatePath(templatePath);
-        }
-
         CodeTemplate codeTemplate = new CodeTemplate(templatePath);
         codeTemplate.setStylePath(stylePath);
         if (this.tableVo != null && this.tableVo.getExtendParams() != null) {
@@ -137,11 +131,11 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
 
     public static void main(String[] args) {
         HashSet<String> tableNames = new HashSet<>();
-        tableNames.add("expos_social_project_detail");
-        tableNames.add("expos_social_project_detail_copy1");
-        tableNames.add("abc");
-        tableNames.add("abds");
-        String entityPackage = "aaaa";
+        tableNames.add("expos_person_pedigree");
+//        tableNames.add("expos_social_project_detail_copy1");
+//        tableNames.add("abc");
+//        tableNames.add("abds");
+        String entityPackage = "person";
 
         // Map<表名, 注释>, 自定义注释Map
         Map<String, String> commentMap = new HashMap<>();
