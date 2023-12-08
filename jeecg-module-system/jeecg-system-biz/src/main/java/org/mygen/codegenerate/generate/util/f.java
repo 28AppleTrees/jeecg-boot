@@ -29,7 +29,7 @@ public class f {
     }
 
     /**
-     * 转驼峰
+     * 转驼峰, 首个单词首字母不变
      * @param field
      * @return
      */
@@ -49,6 +49,22 @@ public class f {
         }
 
         return field;
+    }
+
+    /**
+     * 转驼峰, 首个单词首字母大写
+     * @param sourceString
+     * @return
+     */
+    public static String convertHumpFull(String sourceString) {
+        String[] split = sourceString.split("_");
+        sourceString = "";
+        for (int i = 0; i < split.length; i++) {
+            String var4 = split[i].toLowerCase();
+            var4 = var4.substring(0, 1).toUpperCase() + var4.substring(1, var4.length());
+            sourceString = sourceString + var4;
+        }
+        return sourceString;
     }
 
     public static void a(ColumnVo var0) {

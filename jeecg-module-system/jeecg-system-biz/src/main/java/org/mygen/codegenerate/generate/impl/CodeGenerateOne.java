@@ -19,6 +19,7 @@ import org.mygen.codegenerate.generate.impl.base.CodeGenerate;
 import org.mygen.codegenerate.generate.pojo.ColumnVo;
 import org.mygen.codegenerate.generate.pojo.TableVo;
 import org.mygen.codegenerate.generate.util.NonceUtils;
+import org.mygen.codegenerate.generate.util.f;
 import org.mygen.codegenerate.generate.util.g;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,7 +102,7 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
         Map<String, Object> tableData = this.loadConfigAndReadTable();
         String templatePath = GenerateConfig.templatePath;
         // 模板路径默认为`jeecg/code-template`时, 追加`/one`
-        if (trimChar(templatePath, "/").equals("jeecg/code-template")) {
+        if (trimChar(templatePath, "/").equals("mygen/code-template")) {
             templatePath = "/" + trimChar(templatePath, "/") + "/one";
             GenerateConfig.setTemplatePath(templatePath);
         }
@@ -131,11 +132,11 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
 
     public static void main(String[] args) {
         HashSet<String> tableNames = new HashSet<>();
-        tableNames.add("expos_person_pedigree");
+        tableNames.add("jw_network_disk");
 //        tableNames.add("expos_social_project_detail_copy1");
 //        tableNames.add("abc");
 //        tableNames.add("abds");
-        String entityPackage = "person";
+        String entityPackage = "jw";
 
         // Map<表名, 注释>, 自定义注释Map
         Map<String, String> commentMap = new HashMap<>();
@@ -149,7 +150,7 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
                     tempTable.setTableName(tableName);
 //                    tempTable.setPrimaryKeyPolicy("uuid");
                     tempTable.setEntityPackage(entityPackage);
-                    tempTable.setEntityName(convertHump(tableName));
+                    tempTable.setEntityName(f.convertHumpFull(tableName));
                     tempTable.setFtlDescription(map.get("comment"));
 
                     String comment = commentMap.get(tableName);
@@ -157,6 +158,7 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
                         tempTable.setFtlDescription(comment);
                     }
 
+//                    new CodeGenerateOne(tempTable).generateCodeFile("default.one");
                     new CodeGenerateOne(tempTable).generateCodeFile(null);
                 }
             }
@@ -167,14 +169,4 @@ public class CodeGenerateOne extends CodeGenerate implements IGenerate {
         System.exit(0);
     }
 
-    private static String convertHump(String sourceString) {
-        String[] split = sourceString.split("_");
-        sourceString = "";
-        for (int i = 0; i < split.length; i++) {
-            String var4 = split[i].toLowerCase();
-            var4 = var4.substring(0, 1).toUpperCase() + var4.substring(1, var4.length());
-            sourceString = sourceString + var4;
-        }
-        return sourceString;
-    }
 }

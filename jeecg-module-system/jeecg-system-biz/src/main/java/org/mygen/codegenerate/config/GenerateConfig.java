@@ -144,19 +144,35 @@ public class GenerateConfig {
     }
 
     public static final String getResultName() {
-        return configResourceBundle.getString("result_name");
+        String value = configResourceBundle.getString("result_name");
+        if (!checkPropertiesValue(value)) {
+            return value;
+        }
+        return GenerateConfig.resultName;
     }
 
     public static final String getResultPackage() {
-        return configResourceBundle.getString("result_package");
+        String value = configResourceBundle.getString("result_package");
+        if (!checkPropertiesValue(value)) {
+            return value;
+        }
+        return GenerateConfig.resultPackage;
     }
 
     public static final String getResultMethodSuccess() {
-        return configResourceBundle.getString("result_method_success");
+        String value = configResourceBundle.getString("result_method_success");
+        if (!checkPropertiesValue(value)) {
+            return value;
+        }
+        return GenerateConfig.resultMethodSuccess;
     }
 
     public static final String getResultMethodError() {
-        return configResourceBundle.getString("result_method_error");
+        String value = configResourceBundle.getString("result_method_error");
+        if (!checkPropertiesValue(value)) {
+            return value;
+        }
+        return GenerateConfig.resultMethodError;
     }
 
     public static String getProjectPath() {
@@ -203,7 +219,7 @@ public class GenerateConfig {
         bussiPackage = "com.jeecg";
         sourceRootPackage = "src";
         webrootPackage = "WebRoot";
-        templatePath = "/jeecg/code-template/";
+        templatePath = "/mygen/code-template/";
         dbFiledConvertFlag = true;
         m = "4";
         pageSearchFiledNum = "3";
@@ -350,5 +366,9 @@ public class GenerateConfig {
         };
         Thread var3 = new Thread(var2);
         var3.start();
+    }
+
+    private static boolean checkPropertiesValue(String value) {
+        return value == null || value.equals("");
     }
 }

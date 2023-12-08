@@ -87,13 +87,6 @@ public class CodeGenerate {
                 outputFilepath = var8 + outputFilepath;
                 log.debug("-------webapp---outputFilepath---" + outputFilepath);
                 this.generate(templateFilePath, outputFilepath, tableData, codeTemplate);
-            } else if (outputFilepath.startsWith("default\\one\\java")) {
-                // todo mygen 使用online模板默认读取 default\one\java目录下, onetomany需要调整
-                var8 = projectPath + File.separator + GenerateConfig.sourceRootPackage.replace(".", File.separator);
-                outputFilepath = outputFilepath.substring("default\\one\\java".length());
-                outputFilepath = var8 + outputFilepath;
-                log.debug("-------webapp---outputFilepath---" + outputFilepath);
-                this.generate(templateFilePath, outputFilepath, tableData, codeTemplate);
             }
         } catch (Exception var10) {
             log.error(var10.toString(), var10);
