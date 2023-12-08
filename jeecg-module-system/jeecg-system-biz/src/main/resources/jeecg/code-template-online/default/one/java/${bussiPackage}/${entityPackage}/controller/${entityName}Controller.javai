@@ -137,7 +137,7 @@ public class ${entityName}Controller  {
 	public ${resultName?cap_first}<${entityName}> queryById(@RequestParam(name="id",required=true) String id) {
 		${entityName} ${entityName?uncap_first} = ${entityName?uncap_first}Service.getById(id);
 		if(${entityName?uncap_first}==null) {
-			return ${resultName?cap_first}.${resultMethodError}(500, "未找到对应数据");
+			return ${resultName?cap_first}.${resultMethodError}("未找到对应数据");
 		}
 		return ${resultName?cap_first}.${resultMethodSuccess}(${entityName?uncap_first});
 	}
